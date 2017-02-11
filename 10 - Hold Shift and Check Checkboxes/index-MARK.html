@@ -104,27 +104,24 @@
   </div>
 
 <script>
-  let shiftDown = false;
-  window.addEventListener('keydown', key =>
-    { if (key.key === "Shift") shiftDown = true; });
-  window.addEventListener('keyup', key =>
-    { if (key.key === "Shift") shiftDown = false; });
   
   let lastClicked = -1;
-  const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+  const checkboxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'));
 
   checkboxes.forEach(cb => {
-    cb.addEventListener('change', evt => {
-        const index = checkboxes.findIndex(n => n === evt.target);
-        if (evt.target.checked) {
-          if (lastClicked > -1 && shiftDown) {
+    cb.addEventListener('click', evt => {
+        const target = evt.target;
+        const index = checkboxes.findIndex(n => n === target);
+        console.log("click", index, evt, target);
+          
+        if (target.checked) {
+          if (lastClicked > -1 && evt.shiftKey) {
             const from =  lastClicked < index ? lastClicked : index;
             const to = lastClicked < index ? index : lastClicked;
             for (let n = from; n < to; n++) {
               checkboxes[n].checked = true;
             }
           }
-          //console.log("change", index, evt, this);
           lastClicked = index;
         }
         else {
