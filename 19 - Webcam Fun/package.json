@@ -1,7 +1,7 @@
 {
   "name": "gum",
   "version": "1.0.0",
-  "description": "",
+  "description": "To use: npm install, then npm start",
   "main": "scripts.js",
   "scripts": {
     "start" : "browser-sync start --server --files '*.css, *.html, *.js'"
